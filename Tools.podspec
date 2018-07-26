@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Tools'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'Toos for iOS, including Animaiton, UIColor, FromNib.'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'Tools/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'Tools' => ['Tools/Assets/*.png']
   # }

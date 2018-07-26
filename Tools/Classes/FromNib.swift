@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    class func fromNib<T: UIView>() -> T {
+public extension UIView {
+    public class func hyFromNib<T: UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
 }
 
-extension UITableViewController {
-    func registerCellFromNib(identifier:String) {
+public extension UITableViewController {
+    public func hyRegisterCellFromNib(identifier:String) {
         let nib = UINib(nibName:identifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier:identifier)
     }

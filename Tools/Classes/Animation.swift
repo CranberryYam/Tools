@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    func animateUpnDown() {
+public extension UIView {
+    
+    /**
+     make the object move up and down
+    */
+    public func hyAnimateUpnDown(duration:TimeInterval = 1,
+                               delay:TimeInterval = 0.3,
+                               jumpRate:CGFloat = 0.2) {
         let frame = self.frame
-        let jumpDistance = frame.height * 0.2
+        let jumpDistance = frame.height * jumpRate
         
         self.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
-        UIView.animate(withDuration: 1, delay:0.3,
+        UIView.animate(withDuration: duration, delay:delay,
                        //                       usingSpringWithDamping: 0,
             //                       initialSpringVelocity: 0,
             options: [.repeat, .autoreverse],
@@ -29,11 +35,16 @@ extension UIView {
     /**
      when use in UIButton, change button type to Custome
      */
-    func animateClickScale() {
-        self.transform = CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9)
-        UIView.animate(withDuration: 0.4, delay:0,
-                       usingSpringWithDamping: 0.2,
-                       initialSpringVelocity: 4,
+    public func hyAnimateClickScale(duration:TimeInterval = 0.4,
+                                  delay:TimeInterval = 0,
+                                  scaleRatio:CGFloat = 0.9,
+                                  dampingRatio:CGFloat = 0.2,
+                                  velocity:CGFloat = 4) {
+        self.transform = CGAffineTransform.identity
+                         .scaledBy(x: scaleRatio, y: scaleRatio)
+        UIView.animate(withDuration: duration, delay:delay,
+                       usingSpringWithDamping: dampingRatio,
+                       initialSpringVelocity: velocity,
                        options: [.allowUserInteraction, .curveEaseIn, /*.autoreverse*/],
                        animations: {
                         self.transform = CGAffineTransform.identity
@@ -43,8 +54,14 @@ extension UIView {
         })
     }
     
-    func animateShrink() {
-        self.transform = CGAffineTransform.identity.scaledBy(x: 1.3, y: 1.3)
+    /**
+      slowly shrink the UIImage in 4 seconds
+    */
+    public func hyAnimateShrink(duration:TimeInterval = 4.0,
+                              delay:TimeInterval = 0,
+                              scaleRatio:CGFloat = 1.3) {
+        self.transform = CGAffineTransform.identity
+                         .scaledBy(x: scaleRatio, y: scaleRatio)
         
         UIView.animate(withDuration: 4.0, delay:0,options: [.allowUserInteraction], animations: {
             self.layer.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
