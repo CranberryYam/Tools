@@ -13,6 +13,12 @@ public extension UIView {
     public class func hyFromNib<T: UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
+    public class func hyFromNib<T: AnyObject>(_ nibName:String) -> T? {
+        let bundle = Bundle(for: T.self)
+        let views = bundle.loadNibNamed(nibName, owner: self, options: nil)
+        guard let view = views?[0] else { return nil }
+        return view as? T
+    }
 }
 
 public extension UITableViewController {
